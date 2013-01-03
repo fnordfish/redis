@@ -36,10 +36,13 @@ default[:redis][:release_url]       = "http://redis.googlecode.com/files/redis-#
 # Tunables
 #
 
-default[:redis][:server][:timeout]  = "300000"
-default[:redis][:glueoutputbuf]     = "yes"
+default[:redis][:server][:timeout]     = "300000"
+default[:redis][:server][:loglevel]    = "notice"
+default[:redis][:server][:databases]   = "16"
+default[:redis][:server][:maxclients]  = "10000"
 
-default[:redis][:saves]             = [["3600", "1"]]
+
+default[:redis][:saves]             = [["900", "1"], ["300", "10"], ["60", "10000"]]
 default[:redis][:shareobjects]      = "no"
 if (node[:redis][:shareobjects] == "yes")
   default[:redis][:shareobjectspoolsize] = 1024

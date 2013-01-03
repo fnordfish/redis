@@ -72,7 +72,10 @@ if node[:redis][:master_server_role]
 end
 
 template "#{node[:redis][:conf_dir]}/redis.conf" do
-  source        "redis.conf.erb"
+  source      "redis.conf.erb"
+  if node[:redis][:conf_template_cookbook]
+    cookbook    node[:redis][:conf_template_cookbook]
+  end
   owner         "root"
   group         "root"
   mode          "0644"

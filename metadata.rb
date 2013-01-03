@@ -48,11 +48,6 @@ attribute "redis/release_url",
   :description           => "If using the install_from_release strategy, the URL for the release tarball",
   :default               => "http://redis.googlecode.com/files/redis-:version:.tar.gz"
 
-attribute "redis/glueoutputbuf",
-  :display_name          => "Redis output buffer coalescing",
-  :description           => "Glue small output buffers together into larger TCP packets.",
-  :default               => "yes"
-
 attribute "redis/saves",
   :display_name          => "Redis disk persistence policies",
   :description           => "An array of arrays of time, changed objects policies for persisting data to disk.",
@@ -73,6 +68,10 @@ attribute "redis/conf_dir",
   :display_name          => "",
   :description           => "",
   :default               => "/etc/redis"
+
+attribute "redis/conf_template_cookbook",
+  :display_name          => "overwrite cookbook to the redis.config.erb template",
+  :description           => ""
 
 attribute "redis/user",
   :display_name          => "",
@@ -98,6 +97,33 @@ attribute "redis/server/timeout",
   :display_name          => "Redis server timeout",
   :description           => "Timeout, in seconds, for disconnection of idle clients.",
   :default               => "300"
+
+attribute "redis/server/loglevel",
+  :display_name          => "Set server verbosity to 'debug'",
+  :description           => "it can be one of: debug, verbose, notice, warning",
+  :default               => "notice"
+
+attribute "redis/server/databases",
+  :display_name          => "Set the number of databases.",
+  :description           => "",
+  :default               => "16"
+
+attribute "redis/server/maxclients",
+  :display_name          => "Set the max number of connected clients at the same time.",
+  :description           => "Once the limit is reached Redis will close all the new connections sending an error 'max number of clients reached'.",
+  :default               => "10000"
+
+attribute "redis/server/maxmemory",
+  :display_name          => "Don't use more memory than the specified amount of bytes.",
+  :description           => ""
+
+attribute "redis/server/slowlog_log_slower_than",
+  :display_name          => "The Redis Slow Log is a system to log queries that exceeded a specified execution time",
+  :description           => "Time in microseconds"
+
+attribute "redis/server/slowlog_max_len",
+  :display_name          => "The Redis Slow Log is a system to log queries as long as the slow log is smaller that this value",
+  :description           => ""
 
 attribute "users/redis/uid",
   :display_name          => "",
